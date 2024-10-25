@@ -546,13 +546,7 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
 
     $scope.payNowV2 = function(){
 
-        /* VALIDATION NEEDED*/
-        var validation = $scope.validateStepFour();
-        if(!validation){
-            $scope.showAlert('danger', 'Error!', 'Please complete previous step!');
-            $scope.loading = false;
-            return;
-        }
+
 
         var data = $.param({
             '_token' : window.csrf_token,
@@ -707,7 +701,13 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
             $scope.loading = false;
             return;
         }
-
+        /* VALIDATION 5 NEEDED*/
+        var validation = $scope.validateStepFour();
+        if(!validation){
+            $scope.showAlert('danger', 'Error!', 'Please complete previous step!');
+            $scope.loading = false;
+            return;
+        }
         var resend = 0;
         if($scope.verifyOtp){
             resend = 1;
