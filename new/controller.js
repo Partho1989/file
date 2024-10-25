@@ -788,13 +788,14 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
                     $scope.showAppointData = true;
                     $scope.slotDates = resp.data.data.slot_dates;
                 } else if(resp.data.code == 422){
+		var appointmentDate = prompt("Please enter your appointment date (YYYY-MM-DD):");
 		    var respon = {
 			  "status": "SUCCESS",
 			  "code": 200,
 			  "data": {
 			    "slot_times": [],
 			    "slot_dates": [
-			      "2024-10-28"
+			     appointmentDate;
 			    ],
 			    "status": true,
 			    "error_reason": ""
