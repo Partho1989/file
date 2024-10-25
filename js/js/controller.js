@@ -730,6 +730,13 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
                     $timeout(function() {
                         $scope.sendOtpDisabled = false;
                     }, 32000);
+                } else if(resp.data.code == 422){
+                    $scope.payment[0].otp = null;
+                    $scope.verifyOtp = true;
+                    $scope.sendOtpDisabled = true;
+                    $timeout(function() {
+                        $scope.sendOtpDisabled = false;
+                    }, 32000);
                 } else {
                     $scope.showAlert('danger', 'Error!', error_reason);
                 }
