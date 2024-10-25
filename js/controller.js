@@ -473,7 +473,7 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
     };
 
     $scope.selectAppointmentDate = function (slot_date, webFileInfo, e){
-        /*console.log(slot_date);
+        console.log(slot_date);
         console.log(webFileInfo);*/
 
 
@@ -769,7 +769,7 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
                 if(resp.data.code == 200){
                     $scope.showAppointData = true;
                     $scope.slotDates = resp.data.data.slot_dates;
-                } else if(resp.data.code == 200){
+                } else if(resp.data.code == 422){
                     $scope.showAppointData = true;
                     $scope.slotDates = resp.data.data.slot_dates;
                 } else {
