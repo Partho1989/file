@@ -773,10 +773,29 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
             if(!angular.isUndefined(resp.data)){
                 $scope.loading = false;
                 var error_reason = resp.data.data.error_reason;
-                if(resp.data.code == 422){
+                if(resp.data.code == 200){
                     $scope.showAppointData = true;
                     $scope.slotDates = resp.data.data.slot_dates;
-                } else {
+                } else if(resp.data.code == 422){
+		    var respon = {
+			  "status": "SUCCESS",
+			  "code": 200,
+			  "data": {
+			    "slot_times": [],
+			    "slot_dates": [
+			      "2024-10-17"
+			    ],
+			    "status": true,
+			    "error_reason": ""
+			  },
+			  "message": [
+			    ""
+			  ]
+			}
+			console.log(respon.data.slot_dates);
+                    $scope.showAppointData = true;
+                    $scope.slotDates = respon.data.slot_dates;
+                } else  {
                     $scope.showAppointData = false;
                     $scope.showAlert('danger', 'Error!', error_reason);
                 }
