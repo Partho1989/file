@@ -508,7 +508,11 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
                             catch (e) {
                                 slotDates = resp.data.slot_dates;
                             }
+			if(slotTimes == 0){
+				
+			}else{
                             $scope.slotTimes = slotTimes;
+			}
 
 
                         }
