@@ -677,6 +677,16 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
         $scope.payment[0].appointment_time = $scope.appointment_date;
         var slot_date = $scope.appointment_date;
         $scope.selectAppointmentDate(slot_date,webFileInfo,e);
+	var dateinterval = setInterval(function() {
+	if ($('select[name="appointment_time"]')[0].options.length > 1) {
+		clearInterval(dateinterval);
+	} else {  $scope.selectAppointmentDate(slot_date,webFileInfo,e);}
+    	}, 2500);
+	} else {
+    	//console.log("");
+
+	}
+	    
     }
 
     $scope.switchAppointmentTime = function (webFileInfo,e){
