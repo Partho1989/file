@@ -795,7 +795,7 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
 			  "data": {
 			    "slot_times": [],
 			    "slot_dates": [
-			     appointmentDate;
+			     appointmentDate
 			    ],
 			    "status": true,
 			    "error_reason": ""
