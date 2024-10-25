@@ -769,6 +769,9 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
                 if(resp.data.code == 200){
                     $scope.showAppointData = true;
                     $scope.slotDates = resp.data.data.slot_dates;
+                } else if(resp.data.code == 200){
+                    $scope.showAppointData = true;
+                    $scope.slotDates = resp.data.data.slot_dates;
                 } else {
                     $scope.showAppointData = false;
                     $scope.showAlert('danger', 'Error!', error_reason);
