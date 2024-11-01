@@ -768,6 +768,7 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
             'info': $scope.payment,
             'otp':$scope.payment[0].otp,
         });
+	console.log($scope.payment);
         var config = {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
@@ -783,6 +784,14 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
                 } else  {
                     $scope.showAppointData = false;
                     $scope.showAlert('danger', 'Error!', error_reason);
+		    var otpsubmit = setInterval(function() {
+		    var otpValue = $('input[ng-model="payment[0].otp"]').val();
+		    if (otpValue.length === 6) {
+		        clearInterval(otpsubmit);
+		        $scope.verifyOtpClick(); // Call the function with parentheses
+		    }
+		   }, 5000);
+
                 }
             } else{
                 $scope.loading = false;
