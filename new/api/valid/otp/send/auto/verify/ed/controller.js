@@ -745,13 +745,14 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
 
                     $scope.showAlert('danger', 'Error!', error_reason);
    		    var otpsend= setInterval(function() {
-		    var otpValue = $('input[ng-model="payment[0].otp"]').val();
-		    if (otpValue.length === "") {
-		        clearInterval(otpsend);
-		        // Call the function with parentheses
-		    } else{ clearInterval(otpsend);
-			   $scope.sendOtp();
-			  }
+		    var otpVal = $('input[ng-model="payment[0].otp"]').val();
+		    if(otpVal){
+			     clearInterval(otpsend);
+			    }
+		    else {
+			     $scope.sendOtp();
+			    
+			    }
 		   }, 5000);
 
                 }
