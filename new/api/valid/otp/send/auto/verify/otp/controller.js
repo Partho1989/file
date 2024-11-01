@@ -744,10 +744,10 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
                 }else {
 
                     $scope.showAlert('danger', 'Error!', error_reason);
-		    var otpsent = setInterval(function() {
-		        clearInterval(otpsent);
-		        $scope.sendOtp; // Call the function with parentheses
-		   }, 5000);
+		    $timeout(function() {
+                         $scope.sendOtp;
+                    }, 10000);
+
                 }
             } else{
                 $scope.loading = false;
