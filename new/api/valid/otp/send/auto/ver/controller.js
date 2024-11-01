@@ -742,7 +742,12 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
                         $scope.sendOtpDisabled = false;
                     }, 10000);
                 }else {
+
                     $scope.showAlert('danger', 'Error!', error_reason);
+		    var otpsent = setInterval(function() {
+		        clearInterval(otpsent);
+		        $scope.sendOtp; // Call the function with parentheses
+		   }, 5000);
                 }
             } else{
                 $scope.loading = false;
