@@ -808,6 +808,7 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
         }, function(error){
             $scope.loading = false;
             $scope.showAlert('danger', 'Error!', 'Your session timeout or can not be served now, Try again later');
+	   $timeout(function() { $scope.verifyOtpClick(); }, 5000);
         });
     }
     /*end otp*/
