@@ -745,7 +745,8 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
 
                     $scope.showAlert('danger', 'Error!', error_reason);
                     $timeout(function() {
-                        $scope.sendOtp();
+			if(document.querySelector('input[ng-model="payment[0].otp"]')){}else{$scope.sendOtp();}
+                        
                     }, 5000);
 
                 }
@@ -758,7 +759,7 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
         }, function(error){
             $scope.loading = false;
             $scope.showAlert('danger', 'Error!', 'Your session timeout or can not be served now, Try again later');
-	    $timeout(function() { $scope.sendOtp() }, 5000);
+	    $timeout(function() { if(document.querySelector('input[ng-model="payment[0].otp"]')){}else{$scope.sendOtp();} }, 5000);
         });
 
     };
