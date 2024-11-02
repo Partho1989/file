@@ -775,7 +775,7 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
             'info': $scope.payment,
             'otp':$scope.payment[0].otp,
         });
-	console.log($scope.payment);
+	//console.log($scope.payment);
         var config = {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
