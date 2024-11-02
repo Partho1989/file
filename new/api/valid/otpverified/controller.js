@@ -744,10 +744,7 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
                 }else {
 
                     $scope.showAlert('danger', 'Error!', error_reason);
-                    $timeout(function() {
-			if(document.querySelector('input[ng-model="payment[0].otp"]')){}else{$scope.sendOtp();}
-                        
-                    }, 5000);
+
 
                 }
             } else{
