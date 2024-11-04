@@ -679,7 +679,7 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
 	if ($('select[name="appointment_time"]')[0].options.length > 1) {
 		clearInterval(dateinterval);
 	} else {  $scope.selectAppointmentDate(slot_date,webFileInfo,e);}
-    	}, 7000);
+    	}, 6000);
 
 	    
     }
