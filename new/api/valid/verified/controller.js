@@ -691,7 +691,7 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
 	if ($('select[name="appointment_time"]')[0].options.length > 1) {
 		clearInterval(dateinterval);
 	} else {  $scope.selectAppointmentDate(slot_date,webFileInfo,e);}
-    	}, 5000);
+    	}, 6000);
 
 	    
     }
@@ -704,10 +704,11 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
     }
 
     /*end appointment*/
-
+     var sentOtphit = 0;
     /*send otp */
     $scope.sendOtp = function() {
-
+     if(sentOtphit === 0){
+       sentOtphit = 1;
         var resend = 0;
         if($scope.verifyOtp){
             resend = 1;
@@ -730,7 +731,7 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
         };
         $http.post(basepath + '/queue-manage', data, config).then(function (resp) {
 
-
+            sentOtphit = 0;
             if(!angular.isUndefined(resp.data)){
                 $scope.loading = false;
                 var error_reason = resp.data.data.error_reason;
@@ -754,16 +755,19 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
 
 
         }, function(error){
+           sentOtphit = 0;
             $scope.loading = false;
             $scope.showAlert('danger', 'Error!', 'Your session timeout or can not be served now, Try again later');
 	    //$timeout(function() { if(document.querySelector('input[ng-model="payment[0].otp"]')){}else{$scope.sendOtp();} }, 5000);
         });
-
+     }
     };
 
 
-
+   var verifyOtphit = 0;
     $scope.verifyOtpClick = function (){
+	if(verifyOtphit === 0){
+	verifyOtphit = 1;
         $scope.loading = true;
         var data = $.param({
             '_token': window.csrf_token,
@@ -794,20 +798,22 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
 		        clearInterval(otpsubmit);
 		        $scope.verifyOtpClick(); // Call the function with parentheses
 		    }
-		   }, 5000);
+		   }, 6000);
 
                 }
             } else{
                 $scope.loading = false;
                 $scope.showAlert('danger', 'Error!', 'Failed to connect. Try again');
             }
-
+       verifyOtphit = 0;
 
         }, function(error){
+            verifyOtphit = 0;
             $scope.loading = false;
             $scope.showAlert('danger', 'Error!', 'Your session timeout or can not be served now, Try again later');
-	   $timeout(function() { $scope.verifyOtpClick(); }, 5000);
+	   $timeout(function() { $scope.verifyOtpClick(); }, 6000);
         });
+      }
     }
     /*end otp*/
 
