@@ -757,8 +757,10 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
         });
     };
 
-
+    var verifyOtpprotect = 0; //partho
     $scope.verifyOtpClick = function (){
+	if(verifyOtpprotect === 0){
+	verifyOtpprotect = 1;
         $scope.loading = true;
         var data = $.param({
             '_token': window.csrf_token,
@@ -776,6 +778,7 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
         $http.post(basepath + '/queue-manage', data, config).then(function (resp) {
             if(!angular.isUndefined(resp.data)){
                 $scope.loading = false;
+		verifyOtpprotect = 0;
                 var error_reason = resp.data.data.error_reason;
                 if(resp.data.code == 200){
                     $scope.showAppointData = true;
@@ -791,10 +794,11 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
             }
 
         }, function(error){
+	    verifyOtpprotect = 0;
             $scope.loading = false;
             $scope.showAlert('danger', 'Error!', 'Your session timeout or can not be served now, Try again later');
         });
-
+	}
     }
     /*end otp*/
 
