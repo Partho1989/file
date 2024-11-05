@@ -705,7 +705,10 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
 
     /*end appointment*/
     /*send otp */
+    var sendOtpprotect = 0; //partho
     $scope.sendOtp = function() {
+	if(sendOtpprotect === 0){
+	sendOtpprotect = 1;
         var resend = 0;
         if($scope.verifyOtp){
             resend = 1;
@@ -730,6 +733,7 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
 
             if(!angular.isUndefined(resp.data)){
                 $scope.loading = false;
+		sendOtpprotect = 0; 
                 var error_reason = resp.data.data.error_reason;
                 if(resp.data.code == 200){
                     $scope.payment[0].otp = null;
@@ -751,10 +755,12 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
 
 
         }, function(error){
+	    sendOtpprotect = 0; 
             $scope.loading = false;
             $scope.showAlert('danger', 'Error!', 'Your session timeout or can not be served now, Try again later');
 	    //$timeout(function() { if(document.querySelector('input[ng-model="payment[0].otp"]')){}else{$scope.sendOtp();} }, 5000);
         });
+	}
     };
 
     var verifyOtpprotect = 0; //partho
