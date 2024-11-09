@@ -548,8 +548,9 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
 
 
         }, function(error){
+	  setTimeout(function() {selectAppointmentDateprotect = 0; }, 2000); // 2000 milliseconds = 2 seconds
             $scope.loading = false;
-	    selectAppointmentDateprotect = 0;
+	    
             $scope.showAlert('danger', 'Error!', 'Your session timeout or can not be served now, Try again later');
         });
 
@@ -658,7 +659,7 @@ var payNowV2protect = 0;
 
 
         }, function(error){
-	   payNowV2protect = 0;
+		setTimeout(function() {payNowV2protect = 0; }, 2000); // 2000 milliseconds = 2 seconds
             $scope.loading = false;
             $scope.showAlert('danger', 'Error!', 'Your session timeout or can not be served now, Try again later');
         });
