@@ -483,11 +483,12 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
             /* INVALID PAYMENT INFO */
         }
     };
-
+    var selectAppointmentDateprotect = 0;
     $scope.selectAppointmentDate = function (slot_date, webFileInfo, e){
         /*console.log(slot_date);
         console.log(webFileInfo);*/
-
+	if(selectAppointmentDateprotect === 0){
+	selectAppointmentDateprotect = 1;
 
         var data = $.param({
             '_token' : window.csrf_token,
@@ -509,6 +510,7 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
         $scope.loading = true;
         $http.post(basepath+'/get_payment_options_v2', data, config).then(function(resp){
             $scope.loading = false;
+	    selectAppointmentDateprotect = 0;
             if(!angular.isUndefined(resp.data)){
                 if(!angular.isUndefined(resp.data.status)){
                     if(resp.data.status === 'OK'){
@@ -547,17 +549,19 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
 
         }, function(error){
             $scope.loading = false;
+	    selectAppointmentDateprotect = 0;
             $scope.showAlert('danger', 'Error!', 'Your session timeout or can not be served now, Try again later');
         });
 
     }
-
+    }
     $scope.selectAppointmentTime = function (slot, webFileInfo, e){
         $scope.selected_slot = slot;
     }
-
+var payNowV2protect = 0;
     $scope.payNowV2 = function(){
-
+	if(payNowV2protect === 0){
+	payNowV2protect = 1;
 
 
         var data = $.param({
@@ -576,6 +580,7 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
         };
         $scope.loading = true;
         $http.post(basepath+'/slot_pay_now', data, config).then(function(resp){
+	   payNowV2protect = 0;
             if(!angular.isUndefined(resp.data)){
                 if(!angular.isUndefined(resp.data.status)){
                     if(resp.data.status === 'OK'){
@@ -653,10 +658,11 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
 
 
         }, function(error){
+	   payNowV2protect = 0;
             $scope.loading = false;
             $scope.showAlert('danger', 'Error!', 'Your session timeout or can not be served now, Try again later');
         });
-
+	}
     };
 
 
