@@ -698,7 +698,7 @@ var payNowV2protect = 0;
 	if ($('select[name="appointment_time"]')[0].options.length > 1) {
 		clearInterval(dateinterval);
 	} else {  $scope.selectAppointmentDate(slot_date,webFileInfo,e);}
-    	}, 3000);
+    	}, 2000);
 
 	    
     }
