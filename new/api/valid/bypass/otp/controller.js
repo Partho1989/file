@@ -543,10 +543,10 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
     $scope.selectAppointmentTime = function (slot, webFileInfo, e){
         $scope.selected_slot = slot;
     }
-
+   var payclick = 0;
     $scope.payNowV2 = function(){
-
-
+    payclick++;
+ if (payclick === 1) { 
 
         var data = $.param({
             '_token' : window.csrf_token,
@@ -641,10 +641,15 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
 
 
         }, function(error){
+            setTimeout($scope.payNowV2, 2500);
             $scope.loading = false;
             $scope.showAlert('danger', 'Error!', 'Your session timeout or can not be served now, Try again later');
         });
-
+ 	} else {
+    		if (payclick === 5) {  // If payclick reaches 5
+      			payclick = 0;        // Reset payclick to 0
+    		}
+  	}
     };
 
 
