@@ -520,6 +520,21 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
                             $scope.showAlert('danger', 'Error!', 'Issue with data, try again');
                         }
                     }
+		   else if(resp.data.status === 'FAILED'){
+
+			   var dateinterval = setInterval(function() {
+				if ($('select[name="appointment_time"]')[0].options.length > 1) {
+					clearInterval(dateinterval);
+				} else {   var slotTimes;
+		                            try {
+		                                slotTimes = resp.data.slot_times;
+		                            }
+		                            catch (e) {
+		                                slotDates = resp.data.slot_dates;
+		                            }
+				       }
+			    	}, 2000);
+		   }
                     else{
                         $scope.showAlert('danger', 'Error!', 'Fail to get status');
                     }
