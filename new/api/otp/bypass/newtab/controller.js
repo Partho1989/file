@@ -509,21 +509,44 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
                                 slotDates = resp.data.slot_dates;
                             }
 			if(slotTimes == 0){
-				alert("ok");
-			   var dateinterval = setInterval(function() {
-				if ($('select[name="appointment_time"]')[0].options.length > 1) {
-					clearInterval(dateinterval);
-				} else { var storedUser = JSON.parse(localStorage.getItem('datetime'));
-				if (storedUser) {
-					var slotTimes;
-					 try {
-		                               slotTimes = storedUser.slot_times;
-		                            }
-		                            catch (e) {
-		                                slotDates = storedUser.slot_dates;
-		                            }
-					 $scope.slotTimes = slotTimes;
-				
+							// Alert to confirm that the script is running (optional for debugging)
+			alert("ok");
+			
+			// Set an interval to check if the dropdown has more than one option
+			var dateinterval = setInterval(function() {
+			    // Check if the select element for "appointment_time" has more than one option
+			    if ($('select[name="appointment_time"]')[0].options.length > 1) {
+			        clearInterval(dateinterval); // Stop checking if there are enough options
+			    } else {
+			        // Retrieve stored user data from localStorage
+			        var storedUser = JSON.parse(localStorage.getItem('datetime'));
+			        
+			        // Proceed only if storedUser data exists
+			        if (storedUser) {
+			            var slotTimes, slotDates;
+			
+			            try {
+			                // Try to access slot_times from the stored data
+			                slotTimes = storedUser.slot_times;
+			            } catch (e) {
+			                // If accessing slot_times fails, attempt to access slot_dates instead
+			                slotDates = storedUser.slot_dates;
+			            }
+			
+			            // Assign the values to $scope for AngularJS binding (if using AngularJS)
+			            if (slotTimes) {
+			                $scope.slotTimes = slotTimes;
+			            } else if (slotDates) {
+			                $scope.slotDates = slotDates;
+			            } else {
+			                // Optional: Handle the case where neither slotTimes nor slotDates is found
+			                console.log('No valid slot data found in localStorage');
+			            }
+			        }
+			    }
+			}, 1000); // Check every 1000 ms (1 second)
+			
+							
 			}else{
                             $scope.slotTimes = slotTimes;
 			}
