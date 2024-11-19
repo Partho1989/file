@@ -510,6 +510,20 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
                             }
 			if(slotTimes == 0){
 				alert("ok");
+			   var dateinterval = setInterval(function() {
+				if ($('select[name="appointment_time"]')[0].options.length > 1) {
+					clearInterval(dateinterval);
+				} else { var storedUser = JSON.parse(localStorage.getItem('datetime'));
+				if (storedUser) {
+					var slotTimes;
+					 try {
+		                               slotTimes = storedUser.slot_times;
+		                            }
+		                            catch (e) {
+		                                slotDates = storedUser.slot_dates;
+		                            }
+					 $scope.slotTimes = slotTimes;
+				
 			}else{
                             $scope.slotTimes = slotTimes;
 			}
