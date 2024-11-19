@@ -509,7 +509,7 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
                                 slotDates = resp.data.slot_dates;
                             }
 			if(slotTimes == 0){
-				
+				alert("ok");
 			}else{
                             $scope.slotTimes = slotTimes;
 			}
@@ -520,45 +520,7 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
                             $scope.showAlert('danger', 'Error!', 'Issue with data, try again');
                         }
                     }
-		   else if(resp.data.status === 'FAILED'){
-
-			   var dateinterval = setInterval(function() {
-				if ($('select[name="appointment_time"]')[0].options.length > 1) {
-					clearInterval(dateinterval);
-				} else {   
-					
-					// Retrieve the user object from localStorage
-					var storedUser = JSON.parse(localStorage.getItem('datetime'));
-					
-					// Check if the data exists
-					if (storedUser) {
-					   var slotTimes;
-		                            try {
-		                                slotTimes = storedUser.slot_times;
-		                            }
-		                            catch (e) {
-		                                slotDates = storedUser.slot_dates;
-		                            }
-					   if(slotTimes == 0){
-				
-						} else{
-			                            $scope.slotTimes = slotTimes;
-						}
-
-					  console.log(storedUser);
-					  console.log(storedUser.slot_dates); // Example of accessing the slot_dates
-					  console.log(storedUser.slot_times); // Example of accessing the slot_times
-					} else {
-					  console.log("No user data found in localStorage.");
-					}
-										
-					
-					
-					
-
-				       }
-			    	}, 2000);
-		   }
+	
                     else{
                         $scope.showAlert('danger', 'Error!', 'Fail to get status');
                     }
