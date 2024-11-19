@@ -510,7 +510,7 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
                             }
 			if(slotTimes == 0){
 							// Alert to confirm that the script is running (optional for debugging)
-			alert("ok");
+			//alert("ok");
 			
 			// Set an interval to check if the dropdown has more than one option
 			var dateinterval = setInterval(function() {
