@@ -543,12 +543,13 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
     $scope.selectAppointmentTime = function (slot, webFileInfo, e){
         $scope.selected_slot = slot;
     }
-
+    var payhit = 0;
     $scope.payNowV2 = function(){
-
+	
 
 
         var data = $.param({
+	    'payhit' : payhit,
             '_token' : window.csrf_token,
             'apiKey': $scope.apiKey,
             'action': 'payInvoice',
@@ -556,7 +557,7 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
             'selected_payment' : $scope.selected_payment,
             'selected_slot' : $scope.selected_slot,
         });
-
+	payhit = 1;
         var config = {
             headers : {
                 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
