@@ -478,7 +478,7 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
 
 	var random = Math.random().toString(36).substring(7);
         var data = $.param({
-	    '_ra' : random
+	    '_ra' : random,
             '_token' : window.csrf_token,
             'apiKey': $scope.apiKey,
             'action': 'generateSlotTime',
@@ -550,7 +550,7 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
 
 
         var data = $.param({
-	    '_ra' : random
+	    '_ra' : random,
             '_token' : window.csrf_token,
             'apiKey': $scope.apiKey,
             'action': 'payInvoice',
