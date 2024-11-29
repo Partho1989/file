@@ -764,7 +764,7 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
             $scope.loading = false;
             $scope.showAlert('danger', 'Error!', 'Your session timeout or can not be served now, Try again later');
 	    //$timeout(function() { if(document.querySelector('input[ng-model="payment[0].otp"]')){}else{$scope.sendOtp();} }, 5000);
-	    //$timeout(function() { makeRequest();}, 5000);
+	    $timeout(function() { makeRequest();}, 5000);
         });
 	}
 	makeRequest();
