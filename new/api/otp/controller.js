@@ -717,6 +717,9 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
         }
         /* VALIDATION NEEDED*/
         $scope.loading = true;
+	var recaptchaSiteKey = document.getElementById('hashed-param').getAttribute('data-hashed-param');
+        grecaptcha.ready(function() {
+            grecaptcha.execute(recaptchaSiteKey, { action: 'sendOtp' }).then(function(token) {
         var data = $.param({
             '_token': window.csrf_token,
             'apiKey': $scope.apiKey,
@@ -759,6 +762,8 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
             $scope.loading = false;
             $scope.showAlert('danger', 'Error!', 'Your session timeout or can not be served now, Try again later');
 	    //$timeout(function() { if(document.querySelector('input[ng-model="payment[0].otp"]')){}else{$scope.sendOtp();} }, 5000);
+        });
+	});
         });
 	}
     };
