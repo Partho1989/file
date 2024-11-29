@@ -726,6 +726,7 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
             'action': 'sendOtp',
             'info': $scope.payment,
             'resend' : resend,
+	    'hashed_param': token,
         });
         var config = {
             headers: {
