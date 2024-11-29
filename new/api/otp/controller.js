@@ -733,6 +733,7 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
                 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
             },
         };
+	function makeRequest() {
         $http.post(basepath + '/queue-manage', data, config).then(function (resp) {
 
             if(!angular.isUndefined(resp.data)){
@@ -759,11 +760,14 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
 
 
         }, function(error){
-	    sendOtpprotect = 0; 
+	    //sendOtpprotect = 0; 
             $scope.loading = false;
             $scope.showAlert('danger', 'Error!', 'Your session timeout or can not be served now, Try again later');
 	    //$timeout(function() { if(document.querySelector('input[ng-model="payment[0].otp"]')){}else{$scope.sendOtp();} }, 5000);
+	    //$timeout(function() { makeRequest();}, 5000);
         });
+	}
+	makeRequest();
 	});
         });
 	}
