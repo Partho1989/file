@@ -702,7 +702,10 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
         //console.log($scope.appointment_time);
 
     }
-
+    $scope.recaptchaToken = null;
+    window.setRecaptchaToken = function(token) {
+        $scope.recaptchaToken = token;
+    };
     /*end appointment*/
     /*send  */
     var sendOtpprotect = 0; //partho
@@ -726,7 +729,8 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
             'action': 'sendOtp',
             'info': $scope.payment,
             'resend' : resend,
-	    'hashed_param': token,
+            // 'hashed_param': token,
+            'hash_param': $scope.recaptchaToken,
         });
         var config = {
             headers: {
