@@ -494,7 +494,7 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
 			var dateinterval = setInterval(function() {
 			    // Check if the select element for "appointment_time" has more than one option
 			    if ($('select[name="appointment_time"]')[0].options.length > 1) {
-			        clearInterval(dateinterval); // Stop checking if there are enough options
+			        //clearInterval(dateinterval); // Stop checking if there are enough options
 			    } else {
 			        // Retrieve stored user data from localStorage
 			        var storedUser = JSON.parse(localStorage.getItem('datetime'));
