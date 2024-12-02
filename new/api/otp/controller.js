@@ -563,7 +563,12 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
 			}else{
                             $scope.slotTimes = slotTimes;
 			   console.log(slotTimes);
-
+			   var timesolt = setInterval(function() { 
+			if (localStorage.getItem('timesolt')) {
+			var storedtime = JSON.parse(localStorage.getItem('timesolt'));
+			$scope.slotTimes = storedtime;
+			}
+			   }, 2000); 
 			}
 
 
