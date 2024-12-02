@@ -562,10 +562,7 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
 				
 			}else{
                             $scope.slotTimes = slotTimes;
-			   
-				var timesolt = setInterval(function() { 
-				    console.log("Current slotTimes:", slotTimes);
-				}, 2000);
+
 			}
 
 
