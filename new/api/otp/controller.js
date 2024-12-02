@@ -589,7 +589,7 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
 			                console.log('No valid slot data found in localStorage');
 			            }
 			        }
-			}
+			
 			   }, 2000); 
 			}
 
