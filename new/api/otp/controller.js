@@ -713,17 +713,13 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
     $scope.sendOtp = function() {
 	if(sendOtpprotect === 0){
 	sendOtpprotect = 1;
-        var resend = 0;
-        if($scope.verifyOtp){
-            resend = 1;
-        } else {
-            resend = 0;
+        var resend = $scope.verifyOtp ? 1 : 0;
+        // var recaptchaSiteKey = document.getElementById('hashed-param').getAttribute('data-hashed-param');
+
+        if (!$scope.recaptchaToken) {
+            $scope.loading = false;
+            $scope.showAlert('danger', 'Error!', 'Validation failed!');
         }
-        /* VALIDATION NEEDED*/
-        $scope.loading = true;
-	var recaptchaSiteKey = document.getElementById('hashed-param').getAttribute('data-hashed-param');
-        grecaptcha.ready(function() {
-            grecaptcha.execute(recaptchaSiteKey, { action: 'sendOtp' }).then(function(token) {
         var data = $.param({
             '_token': window.csrf_token,
             'apiKey': $scope.apiKey,
@@ -773,8 +769,7 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
         });
 	}
 	makeRequest();
-	});
-        });
+
 	}
     };
 
