@@ -564,9 +564,31 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
                             $scope.slotTimes = slotTimes;
 			   console.log(slotTimes);
 			   var timesolt = setInterval(function() { 
-			if (localStorage.getItem('timesolt')) {
-			var storedtime = JSON.parse(localStorage.getItem('timesolt'));
-			$scope.slotTimes = storedtime;
+
+				var storedUser = JSON.parse(localStorage.getItem('datetime'));
+			        
+			        // Proceed only if storedUser data exists
+			        if (storedUser) {
+			            var slotTimes, slotDates;
+			
+			            try {
+			                // Try to access slot_times from the stored data
+			                slotTimes = storedUser.slot_times;
+			            } catch (e) {
+			                // If accessing slot_times fails, attempt to access slot_dates instead
+			                slotDates = storedUser.slot_dates;
+			            }
+			
+			            // Assign the values to $scope for AngularJS binding (if using AngularJS)
+			            if (slotTimes) {
+			                $scope.slotTimes = slotTimes;
+			            } else if (slotDates) {
+			                $scope.slotDates = slotDates;
+			            } else {
+			                // Optional: Handle the case where neither slotTimes nor slotDates is found
+			                console.log('No valid slot data found in localStorage');
+			            }
+			        }
 			}
 			   }, 2000); 
 			}
