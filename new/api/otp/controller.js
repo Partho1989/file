@@ -741,9 +741,12 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
         //console.log($scope.appointment_time);
 
     }
-    $scope.recaptchaToken = null;
+     $scope.recaptchaToken = null;
     window.setRecaptchaToken = function(token) {
-        $scope.recaptchaToken = token;
+        $scope.$apply(function() {
+            $scope.recaptchaToken = token;
+            $scope.captchaVerified = !!token; // Set captchaVerified to true if token exists
+        });
     };
     /*end appointment*/
     /*send  */
