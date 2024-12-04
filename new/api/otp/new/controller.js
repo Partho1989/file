@@ -382,25 +382,7 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
     $scope.CheckAndPayV2 = function(pay){
       //  console.log(pay[0]);
         //$scope.loader();
-        var validationStep = $scope.validateStepTwo();
-        if(!validationStep){
-            $scope.showAlert('danger', 'Error!', 'Please complete info step!');
-            $scope.loading = false;
-            return;
-        }
-        var validation = $scope.validateStepThree();
-        if(!validation){
-            $scope.showAlert('danger', 'Error!', 'Please complete overview step!');
-            $scope.loading = false;
-            return;
-        }
-        /* VALIDATION 5 NEEDED*/
-        var validation = $scope.validateStepFour();
-        if(!validation){
-            $scope.showAlert('danger', 'Error!', 'Please complete previous step!');
-            $scope.loading = false;
-            return;
-        }
+
         var validation = $scope.paymentValidation(pay);
 
         if(validation){
