@@ -1054,12 +1054,7 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
     };
     $scope.submitPersonalForm = function(isValid) {
 
-        var validation = $scope.validateStepOne();
-        if(!validation){
-            $scope.showAlert('danger', 'Error!', 'Please complete step 1 first!');
-            $scope.loading = false;
-            return;
-        }
+
 
         // check to make sure the form is completely valid
         if (isValid) {
