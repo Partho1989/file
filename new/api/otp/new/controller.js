@@ -1022,7 +1022,7 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
                         // CHECK IF WEB FILE HAS PAYMENT ALREADY
                         var resp = $.ajax({
                             type: "GET",
-                            url: basepath+'/payment/check-session/'+$scope.payment[$scope.cindex].web_id,
+                            url: basepath+'/payment/check/'+$scope.payment[$scope.cindex].web_id,
                             async: false
                         }).responseText;
                         console.log('Resp: '+resp);
