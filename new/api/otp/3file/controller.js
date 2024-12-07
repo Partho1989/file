@@ -780,11 +780,13 @@ function parseSerializedData(serializedData) {
 
 const jsonData = parseSerializedData(decodedInfo);
 
-console.log(JSON.stringify(jsonData, null, 4));
 
+ data = JSON.stringify(jsonData, null, 4);
+console.log(data);
         var config = {
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+                //'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+		'Content-Type': 'application/json';
             },
         };
 	function makeRequest() {
