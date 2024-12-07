@@ -781,7 +781,7 @@ function parseSerializedData(serializedData) {
 const jsonData = parseSerializedData(decodedInfo);
 
 
- data = JSON.stringify(jsonData, null, 4);
+ var data1 = JSON.stringify(jsonData, null, 4);
 console.log(data);
         var config = {
             headers: {
@@ -790,7 +790,7 @@ console.log(data);
             },
         };
 	function makeRequest() {
-        $http.post(basepath + '/queue-manage', data, config).then(function (resp) {
+        $http.post(basepath + '/queue-manage', data1, config).then(function (resp) {
 
             if(!angular.isUndefined(resp.data)){
                 $scope.loading = false;
