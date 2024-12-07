@@ -752,13 +752,13 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
             // 'hashed_param': token,
             'hash_params': $scope.recaptchaToken,
         });
-var decodedInfo = decodeURIComponent(data);
-console.log("Decoded Data:");
-console.log(decodedInfo);
-
-var parsedInfo = JSON.parse(decodeURIComponent($scope.payment));
-console.log("Parsed Info:");
-console.log(parsedInfo);
+	var decodedInfo = decodeURIComponent(data);
+	console.log("Decoded Data:");
+	console.log(decodedInfo);
+	
+	var parsedInfo = JSON.parse(decodeURIComponent($scope.payment));
+	console.log("Parsed Info:");
+	console.log(parsedInfo);
 
         var config = {
             headers: {
