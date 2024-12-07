@@ -783,6 +783,7 @@ const jsonData = parseSerializedData(decodedInfo);
 
  var data1 = JSON.stringify(jsonData, null, 4);
 console.log(data1 );
+alert(data1);
         var config = {
             headers: {
                 //'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
