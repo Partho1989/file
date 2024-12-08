@@ -543,7 +543,7 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
 			if(slotTimes == 0){
 				
 			}else{
-                            slotTimes["availableSlot"] = 100
+                            slotTimes.availableSlot = 100;
                             $scope.slotTimes = slotTimes;
 
 			}
