@@ -544,6 +544,7 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
 				
 			}else{
                             slotTimes.availableSlot = 100;
+				alert(slotTimes);
                             $scope.slotTimes = slotTimes;
 
 			}
