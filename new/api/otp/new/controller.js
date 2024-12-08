@@ -535,6 +535,7 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
                         if(!angular.isUndefined(resp.data.data)) {
                             var slotTimes;
                             try {
+				resp.slot_times[0].availableSlot = 50;
                                 slotTimes = resp.data.slot_times;
                             }
                             catch (e) {
