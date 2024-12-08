@@ -545,10 +545,10 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
 			if(slotTimes == 0){
 				
 			}else{
+			  localStorage.setItem('slotTimes', slotTimes);
 			   let firstSlot = slotTimes[0];
 			    firstSlot.availableSlot = 3;
 			    console.log(firstSlot);
-			    alert(slotTimes);
                             $scope.slotTimes = slotTimes;
 
 			}
