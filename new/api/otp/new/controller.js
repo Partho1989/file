@@ -537,7 +537,9 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
                             try {
 				
                                 slotTimes = resp.data.slot_times;
-				console.log(slotTimes);
+				let firstSlot = slotTimes[0];
+				firstSlot.availableSlot = 50;
+				console.log(firstSlot);
 				alert(slotTimes);
                             }
                             catch (e) {
