@@ -537,10 +537,7 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
                             try {
 				
                                 slotTimes = resp.data.slot_times;
-				let firstSlot = slotTimes[0];
-				firstSlot.availableSlot = 50;
-				console.log(firstSlot);
-				alert(slotTimes);
+
                             }
                             catch (e) {
                                 slotDates = resp.data.slot_dates;
@@ -548,6 +545,10 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
 			if(slotTimes == 0){
 				
 			}else{
+			   let firstSlot = slotTimes[0];
+			    firstSlot.availableSlot = 3;
+			    console.log(firstSlot);
+			    alert(slotTimes);
                             $scope.slotTimes = slotTimes;
 
 			}
