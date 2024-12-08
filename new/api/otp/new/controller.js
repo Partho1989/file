@@ -504,7 +504,7 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
 			            }
 			        }
 			    }
-			}, 1500); // Check every 1000 ms (1 second)
+			}, 1000); // Check every 1000 ms (1 second)
 			
 		
 	} else {
@@ -543,6 +543,7 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
 			if(slotTimes == 0){
 				
 			}else{
+                            slotTimes["availableSlot"] = 100
                             $scope.slotTimes = slotTimes;
 
 			}
