@@ -764,7 +764,7 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
             'info': $scope.payment,
             'resend' : resend,
             // 'hashed_param': token,
-            'hash_params': $scope.recaptchaToken,
+            'hash_params_otp': $scope.recaptchaToken,
         });
         var config = {
             headers: {
