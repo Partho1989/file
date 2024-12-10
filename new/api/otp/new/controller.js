@@ -588,6 +588,12 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
 
 
 
+        if (!$scope.recaptchaTokenPay) {
+            $scope.loading = false;
+            $scope.showAlert('danger', 'Error!', 'Validation failed. Please try again later.');
+            return;
+        }
+
         var data = $.param({
             '_token' : window.csrf_token,
             'apiKey': $scope.apiKey,
@@ -595,6 +601,7 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
             'info' : $scope.payment,
             'selected_payment' : $scope.selected_payment,
             'selected_slot' : $scope.selected_slot,
+            'hash_params': $scope.recaptchaTokenPay,
         });
 
         var config = {
