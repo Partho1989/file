@@ -583,6 +583,13 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
     $scope.selectAppointmentTime = function (slot, webFileInfo, e){
         $scope.selected_slot = slot;
     }
+  $scope.recaptchaTokenPay = null;
+    window.setRecaptchaTokenPay = function(token) {
+        $scope.$apply(function() {
+            $scope.recaptchaTokenPay = token;
+            $scope.captchaVerifiedPay = !!token; // Set captchaVerified to true if token exists
+        });
+    };
 
     $scope.payNowV2 = function(){
 
