@@ -819,6 +819,7 @@ app.controller('payment_application', ['$scope', '$timeout', '$http', '$filter',
     console.log(respon.data.slot_dates);
     $scope.showAppointData = true;
     $scope.slotDates = respon.data.slot_dates;
+			localStorage.removeItem('preotp');
 } else {
 	makeRequest();
 		}
